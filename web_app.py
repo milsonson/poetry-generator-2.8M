@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
+import os
 import time
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -267,8 +268,8 @@ class ReusableThreadingHTTPServer(ThreadingHTTPServer):
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the poetry generation web UI.")
-    parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=7860)
+    parser.add_argument("--host", default=os.environ.get("HOST", "127.0.0.1"))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "7860")))
     return parser.parse_args()
 
 

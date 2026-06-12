@@ -55,12 +55,14 @@
 
 如果后续重新训练，只要这些文件被替换，就应该同步更新本节和“当前状态”表。
 
-## GitHub 展示页
+## Web GUI 与公网部署
 
 仓库包含两个网页入口：
 
 - `static/index.html`：本地完整 GUI，配合 `web_app.py` 调用 PyTorch checkpoint 实时生成。
-- `docs/index.html`：GitHub Pages 静态展示页，保留 GUI 交互效果并使用样例输出，适合公开展示项目。
+- `docs/index.html`：GitHub Pages 静态展示页，只能展示界面和样例，不能运行 PyTorch 模型。
+
+如果要公网访问后和本地完全一样实时生成，必须部署 Python 后端。仓库已经包含 Docker 入口，适合部署到 Hugging Face Spaces、Render、Railway、Fly.io 或自己的服务器。详见 `DEPLOY.md`。
 
 本地运行完整生成器：
 
@@ -74,7 +76,12 @@ python web_app.py --host 127.0.0.1 --port 7860
 http://127.0.0.1:7860
 ```
 
-推送到 GitHub 后，仓库里的 `.github/workflows/pages.yml` 会把 `docs/` 发布为 GitHub Pages。第一次使用时需要在 GitHub 仓库的 Settings -> Pages 中把 Source 设为 GitHub Actions。
+Docker 运行完整生成器：
+
+```bash
+docker build -t poetry-generator-2-8m .
+docker run --rm -p 7860:7860 poetry-generator-2-8m
+```
 
 ## 主要优化
 

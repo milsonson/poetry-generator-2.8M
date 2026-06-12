@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from generation_forms import FORM_OPTIONS
+from web_app import parse_args
 
 
 HTML = Path(__file__).resolve().parents[1] / "static" / "index.html"
@@ -23,3 +24,14 @@ def test_gui_keeps_generation_controls_without_samples_or_curve():
 
 def test_public_form_options_only_include_structured_forms():
     assert FORM_OPTIONS == ["五言绝句", "七言绝句", "五言律诗", "七言律诗"]
+
+
+def test_web_app_uses_deployment_host_and_port_from_environment(monkeypatch):
+    monkeypatch.setenv("HOST", "0.0.0.0")
+    monkeypatch.setenv("PORT", "7861")
+    monkeypatch.setattr("sys.argv", ["web_app.py"])
+
+    args = parse_args()
+
+    assert args.host == "0.0.0.0"
+    assert args.port == 7861
