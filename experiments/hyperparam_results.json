@@ -1,0 +1,197 @@
+[
+  {
+    "name": "baseline",
+    "changed_param": "baseline",
+    "n_layer": 2,
+    "n_head": 4,
+    "d_model": 96,
+    "d_ff": 384,
+    "dropout": 0.1,
+    "learning_rate": 0.0003,
+    "max_iters": 300,
+    "batch_size": 32,
+    "block_size": 128,
+    "params_m": 1.353,
+    "final_train_loss": 6.3676,
+    "final_val_loss": 6.3731,
+    "seconds": 2.3,
+    "loss_history": [
+      {
+        "iter": 0,
+        "train": 8.703821182250977,
+        "val": 8.701013565063477
+      },
+      {
+        "iter": 100,
+        "train": 6.743542671203613,
+        "val": 6.749375820159912
+      },
+      {
+        "iter": 200,
+        "train": 6.48096227645874,
+        "val": 6.492449760437012
+      },
+      {
+        "iter": 300,
+        "train": 6.367626190185547,
+        "val": 6.373147010803223
+      }
+    ]
+  },
+  {
+    "name": "fewer_heads",
+    "changed_param": "n_head=2",
+    "n_layer": 2,
+    "n_head": 2,
+    "d_model": 96,
+    "d_ff": 384,
+    "dropout": 0.1,
+    "learning_rate": 0.0003,
+    "max_iters": 300,
+    "batch_size": 32,
+    "block_size": 128,
+    "params_m": 1.353,
+    "final_train_loss": 6.3735,
+    "final_val_loss": 6.3784,
+    "seconds": 2.1,
+    "loss_history": [
+      {
+        "iter": 0,
+        "train": 8.703868865966797,
+        "val": 8.701044082641602
+      },
+      {
+        "iter": 100,
+        "train": 6.743472099304199,
+        "val": 6.749255180358887
+      },
+      {
+        "iter": 200,
+        "train": 6.48153829574585,
+        "val": 6.492738246917725
+      },
+      {
+        "iter": 300,
+        "train": 6.373542308807373,
+        "val": 6.378355979919434
+      }
+    ]
+  },
+  {
+    "name": "wider_ffn",
+    "changed_param": "d_ff=768",
+    "n_layer": 2,
+    "n_head": 4,
+    "d_model": 96,
+    "d_ff": 768,
+    "dropout": 0.1,
+    "learning_rate": 0.0003,
+    "max_iters": 300,
+    "batch_size": 32,
+    "block_size": 128,
+    "params_m": 1.501,
+    "final_train_loss": 6.3587,
+    "final_val_loss": 6.3744,
+    "seconds": 1.9,
+    "loss_history": [
+      {
+        "iter": 0,
+        "train": 8.685908317565918,
+        "val": 8.686952590942383
+      },
+      {
+        "iter": 100,
+        "train": 6.761187553405762,
+        "val": 6.764875888824463
+      },
+      {
+        "iter": 200,
+        "train": 6.489502906799316,
+        "val": 6.500229835510254
+      },
+      {
+        "iter": 300,
+        "train": 6.358698844909668,
+        "val": 6.3743791580200195
+      }
+    ]
+  },
+  {
+    "name": "higher_dropout",
+    "changed_param": "dropout=0.2",
+    "n_layer": 2,
+    "n_head": 4,
+    "d_model": 96,
+    "d_ff": 384,
+    "dropout": 0.2,
+    "learning_rate": 0.0003,
+    "max_iters": 300,
+    "batch_size": 32,
+    "block_size": 128,
+    "params_m": 1.353,
+    "final_train_loss": 6.4063,
+    "final_val_loss": 6.4069,
+    "seconds": 1.7,
+    "loss_history": [
+      {
+        "iter": 0,
+        "train": 8.703821182250977,
+        "val": 8.701013565063477
+      },
+      {
+        "iter": 100,
+        "train": 6.7504448890686035,
+        "val": 6.7558441162109375
+      },
+      {
+        "iter": 200,
+        "train": 6.500401973724365,
+        "val": 6.5099639892578125
+      },
+      {
+        "iter": 300,
+        "train": 6.4062981605529785,
+        "val": 6.40685510635376
+      }
+    ]
+  },
+  {
+    "name": "higher_lr",
+    "changed_param": "lr=1e-3",
+    "n_layer": 2,
+    "n_head": 4,
+    "d_model": 96,
+    "d_ff": 384,
+    "dropout": 0.1,
+    "learning_rate": 0.001,
+    "max_iters": 300,
+    "batch_size": 32,
+    "block_size": 128,
+    "params_m": 1.353,
+    "final_train_loss": 5.7998,
+    "final_val_loss": 5.9063,
+    "seconds": 1.7,
+    "loss_history": [
+      {
+        "iter": 0,
+        "train": 8.703821182250977,
+        "val": 8.701013565063477
+      },
+      {
+        "iter": 100,
+        "train": 6.431471824645996,
+        "val": 6.457418918609619
+      },
+      {
+        "iter": 200,
+        "train": 6.114441871643066,
+        "val": 6.189367294311523
+      },
+      {
+        "iter": 300,
+        "train": 5.799796104431152,
+        "val": 5.906335830688477
+      }
+    ]
+  }
+]

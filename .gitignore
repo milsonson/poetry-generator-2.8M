@@ -1,0 +1,37 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+.venv/
+venv/
+env/
+
+.DS_Store
+Thumbs.db
+
+# Training artifacts that are too large or unnecessary for a GitHub showcase.
+*.pt
+*.pth
+backups/
+data_100k_raw/
+data_100k_form/
+model_100k_form/
+poet_style_data/raw/
+poet_style_data/processed/
+poet_style_data/processed_vocab_compatible/
+poet_style_data/training_full/
+poet_style_models/*/transformer_poetry.pth
+
+# Keep the compact demo checkpoint and vocabulary for local generation.
+!/transformer_poetry.pth
+!/vocab.json
+
+# Large source corpora can be regenerated from the data scripts.
+poetry.txt
+poetry_cleaned.txt
+poetry_form_labeled.txt

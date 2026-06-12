@@ -1,0 +1,96 @@
+{
+  "config": {
+    "vocab_size": 5642,
+    "block_size": 128,
+    "n_layer": 4,
+    "n_head": 4,
+    "d_model": 128,
+    "d_ff": 512,
+    "dropout": 0.1
+  },
+  "vocab_size": 5642,
+  "loss_history": [
+    {
+      "iter": 0,
+      "train": 5.3616228103637695,
+      "val": 5.414647579193115
+    },
+    {
+      "iter": 50,
+      "train": 4.617239952087402,
+      "val": 4.8820481300354
+    },
+    {
+      "iter": 100,
+      "train": 4.274117469787598,
+      "val": 4.785025596618652
+    },
+    {
+      "iter": 150,
+      "train": 4.056764125823975,
+      "val": 4.7899580001831055
+    },
+    {
+      "iter": 200,
+      "train": 3.772085189819336,
+      "val": 4.802000045776367
+    },
+    {
+      "iter": 250,
+      "train": 3.6145381927490234,
+      "val": 4.781177520751953
+    },
+    {
+      "iter": 300,
+      "train": 3.3878579139709473,
+      "val": 4.741923809051514
+    },
+    {
+      "iter": 350,
+      "train": 3.21132230758667,
+      "val": 4.763236045837402
+    },
+    {
+      "iter": 400,
+      "train": 3.0310964584350586,
+      "val": 4.812682151794434
+    },
+    {
+      "iter": 450,
+      "train": 2.8403820991516113,
+      "val": 4.833700656890869
+    },
+    {
+      "iter": 500,
+      "train": 2.69712495803833,
+      "val": 4.826512336730957
+    },
+    {
+      "iter": 300,
+      "selected": "best",
+      "train": 3.2954323291778564,
+      "val": 4.793896675109863
+    }
+  ],
+  "best_iter": 300,
+  "best_val_loss": 4.741923809051514,
+  "selected_checkpoint": "best_val",
+  "base_checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/transformer_poetry.pth",
+  "poet": "李白",
+  "form_counts": {
+    "七言绝句": 88,
+    "五言律诗": 183,
+    "五言绝句": 84,
+    "七言律诗": 17
+  },
+  "train_sequences": 327,
+  "val_sequences": 45,
+  "fine_tune_args": {
+    "max_iters": 500,
+    "batch_size": 16,
+    "eval_interval": 50,
+    "eval_iters": 20,
+    "learning_rate": 0.0001,
+    "patience": 4
+  }
+}

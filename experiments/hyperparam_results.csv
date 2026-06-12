@@ -1,0 +1,6 @@
+name,changed_param,n_layer,n_head,d_model,d_ff,dropout,learning_rate,max_iters,batch_size,block_size,params_m,final_train_loss,final_val_loss,seconds
+baseline,baseline,2,4,96,384,0.1,0.0003,300,32,128,1.353,6.3676,6.3731,2.3
+fewer_heads,n_head=2,2,2,96,384,0.1,0.0003,300,32,128,1.353,6.3735,6.3784,2.1
+wider_ffn,d_ff=768,2,4,96,768,0.1,0.0003,300,32,128,1.501,6.3587,6.3744,1.9
+higher_dropout,dropout=0.2,2,4,96,384,0.2,0.0003,300,32,128,1.353,6.4063,6.4069,1.7
+higher_lr,lr=1e-3,2,4,96,384,0.1,0.001,300,32,128,1.353,5.7998,5.9063,1.7

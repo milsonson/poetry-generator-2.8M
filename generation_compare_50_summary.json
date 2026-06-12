@@ -1,0 +1,1055 @@
+{
+  "summary": {
+    "device": "cuda",
+    "settings": {
+      "max_new_tokens": 80,
+      "temperature": 0.6,
+      "top_k": 40,
+      "repetition_penalty": 1.1,
+      "repetition_window": 64,
+      "adaptive_temperature": true
+    },
+    "compact_checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/transformer_poetry.pth",
+    "large_checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/backups/transformer_poetry_before_compact_retrain.pth",
+    "compact_config": {
+      "vocab_size": 5642,
+      "block_size": 128,
+      "n_layer": 4,
+      "n_head": 4,
+      "d_model": 128,
+      "d_ff": 512,
+      "dropout": 0.1
+    },
+    "large_config": {
+      "vocab_size": 5642,
+      "block_size": 128,
+      "n_layer": 6,
+      "n_head": 8,
+      "d_model": 256,
+      "d_ff": 1024,
+      "dropout": 0.1
+    },
+    "compact_params": 2254080,
+    "large_params": 7660544,
+    "compact": {
+      "count": 50,
+      "unique_count": 50,
+      "format_ok_count": 50,
+      "format_ok_rate": 1.0,
+      "avg_distinct_char_ratio": 0.9358571428571426,
+      "avg_duplicate_bigram_ratio": 0.0003636363636363638,
+      "max_char_run": 2
+    },
+    "large_7_66m": {
+      "count": 50,
+      "unique_count": 50,
+      "format_ok_count": 50,
+      "format_ok_rate": 1.0,
+      "avg_distinct_char_ratio": 0.9287142857142855,
+      "avg_duplicate_bigram_ratio": 0.003896454422770215,
+      "max_char_run": 2
+    }
+  },
+  "rows": [
+    {
+      "id": 1,
+      "form": "五言绝句",
+      "start": "春",
+      "seed": 20260613,
+      "compact": "春色满江船，花枝上雪新。\n此时无数日，未得不曾人。",
+      "large_7_66m": "春水萦塘外，烟云暗细微。\n山林无数里，天子不曾回。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 2,
+      "form": "七言绝句",
+      "start": "夏",
+      "seed": 20260614,
+      "compact": "夏日重年三月秋，雨余长被暑风前。\n青山不见春光后，万缕摇摇露翠微。",
+      "large_7_66m": "夏日重回春已老，一番长是雨时时。\n何如不见春风起，却有梅花满眼前。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 3,
+      "form": "五言律诗",
+      "start": "秋",
+      "seed": 20260615,
+      "compact": "秋色满江边，春风吹白鸥。\n故人无晚景，远送有时春。\n野水惊天阔，征帆入浦乡。\n老农不可惜，新水又西城。",
+      "large_7_66m": "秋色初微雪，春风忽自稀。\n山林吹冷柳，石叶落花归。\n野树山天草，幽吟鸟外衣。\n何处愁思物，愁亦此时还。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 4,
+      "form": "七言律诗",
+      "start": "冬",
+      "seed": 20260616,
+      "compact": "冬夜三年二十年，一番风月伴吟诗。\n山林寂寞难相问，月下秋风不见时。\n一片帆飞连北梦，八千灯火叫南阳。\n不妨明月西山下，白鸟斜阳日夜催。",
+      "large_7_66m": "冬日云山万里还，山林风雨步高关。\n山前已起龙楼静，草径犹疑鹤莫归。\n我有佳人应不得，君来归去亦相望。\n闲心未必同相对，好在西流一两家。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.8214285714285714,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 5,
+      "form": "五言绝句",
+      "start": "山",
+      "seed": 20260617,
+      "compact": "山林不可语，万里又一年。\n只有金莲月，应无白鸟来。",
+      "large_7_66m": "山林不自见，山月又无愁。\n只有金盘树，心生水里心。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 6,
+      "form": "七言绝句",
+      "start": "水",
+      "seed": 20260618,
+      "compact": "水面清香万顷云，一枝千里伴渔舟。\n一杯不是非吾事，天地寒风为客愁。",
+      "large_7_66m": "水底如烟万里峰，一枝千里与云低。\n一株细雨惊秋鸟，不觉寒声入玉溪。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 7,
+      "form": "五言律诗",
+      "start": "月",
+      "seed": 20260619,
+      "compact": "月里金江水，年中玉径深。\n万花如此地，一笑不知心。\n海上青铜白，山阴白鹤生。\n西来还自往，风雪在芦洲。",
+      "large_7_66m": "月色金花下，烟霞玉绮池。\n高人如此地，身在此时时。\n树叶看离意，泉飞入旧欢。\n何妨人自少，风雪却相携。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.975,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.925,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 8,
+      "form": "七言律诗",
+      "start": "风",
+      "seed": 20260620,
+      "compact": "风吹飞去雁飞飞，天下东风满九秋。\n春到故山无酒力，夜深花落是吾家。\n今年已觉人何事，千里相期意已除。\n老子不知心欲问，白鸥还复送归程。",
+      "large_7_66m": "风吹山外路连州，地里闲居共小回。\n春色忽来无一事，月明犹有古吾王。\n江湖已问人间少，山外何妨句里钱。\n为说琴中心不得，清风吹尽水边腮。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9107142857142857,
+        "duplicate_bigram_ratio": 0.036363636363636376,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 9,
+      "form": "五言绝句",
+      "start": "花",
+      "seed": 20260621,
+      "compact": "花好如何处，春风落乱花。\n无心不可语，独有一蓑时。",
+      "large_7_66m": "花家如蝶尽，千里压天涯。\n此事无人事，他年更在时。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 10,
+      "form": "七言绝句",
+      "start": "雪",
+      "seed": 20260622,
+      "compact": "雪里荷池柳作梅，春风吹醉牡丹枝。\n今朝莫说人家事，却是诗夫得几时。",
+      "large_7_66m": "雪色初晴睡里明，山中犹有碧云行。\n何人莫为公王事，却为诗夫第一生。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 11,
+      "form": "五言律诗",
+      "start": "江",
+      "seed": 20260623,
+      "compact": "江湖何处士，山下亦无心。\n远地不相对，长江自相寻。\n云林有落落，月影无清明。\n已是扁舟去，谁人似此情。",
+      "large_7_66m": "江南天外客，山上水间还。\n远客不行鸟，清风自自归。\n诗书知有地，心薄已无违。\n相思无穷计，吾亦愧我违。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 12,
+      "form": "七言律诗",
+      "start": "云",
+      "seed": 20260624,
+      "compact": "云色层层势有奇，天颜光气拥炉灰。\n三年万里心犹壮，九岁新篁一梦回。\n世事何妨俱复见，水声终日已难开。\n不如客路心如此，更向春风作醉时。",
+      "large_7_66m": "云拥山云势有时，天涯不识石桥西。\n古今未见清明月，今岁犹堪得一杯。\n世事何须归又去，心间何处见他时。\n安如此路无穷处，更恐应应到我来。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9464285714285714,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.875,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 13,
+      "form": "五言绝句",
+      "start": "夜",
+      "seed": 20260625,
+      "compact": "夜窗清晓夜，月明天气明。\n月圆无佳节，时复自清宵。",
+      "large_7_66m": "夜月不如日，风光满白头。\n不应无事起，更欲自清宵。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.8,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 14,
+      "form": "七言绝句",
+      "start": "雨",
+      "seed": 20260626,
+      "compact": "雨余风露翠飕飕，一线倾人把钓舟。\n不识风流西去信，又看楼上下山头。",
+      "large_7_66m": "雨里云中一段飞，雪回花外月如何。\n不知风露西山阔，又似人家自有心。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 15,
+      "form": "五言律诗",
+      "start": "天",
+      "seed": 20260627,
+      "compact": "天上秋声远，云山宿野期。\n窗间水欲断，松竹月无寻。\n松影寒疏灯，风荷草木阴。\n年来何处宿，不复此时情。",
+      "large_7_66m": "天下风流水，山中雪渐迟。\n清香吹露白，远色落云枝。\n野户寒声重，江边鸟外梅。\n闲心不如此，何日到人知。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 16,
+      "form": "七言律诗",
+      "start": "日",
+      "seed": 20260628,
+      "compact": "日月新诗第几春，风烟漠漠北东人。\n天花桃李千年地，海阜江山六十分。\n南北淮阳红绿荔，北风吹蝶照梅尘。\n西来不复寻芳事，莫向西湖老子春。",
+      "large_7_66m": "日上新台第几春，风流今月见东人。\n江南东北天行路，城外平生路暗人。\n我亦不知吾欲醉，君应何事一回头。\n安知此去无闲事，老子还应老子哉。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.8928571428571429,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.8571428571428571,
+        "duplicate_bigram_ratio": 0.018181818181818188,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 17,
+      "form": "五言绝句",
+      "start": "人",
+      "seed": 20260629,
+      "compact": "人世方相见，何时百岁时。\n一言非外事，万里自知休。",
+      "large_7_66m": "人情不易见，何事更无期。\n一笑如红叶，三三月满枝。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 18,
+      "form": "七言绝句",
+      "start": "客",
+      "seed": 20260630,
+      "compact": "客里相逢酒一杯，诗题诗句有新开。\n何时可得闲情苦，谁是梅花倒落来。",
+      "large_7_66m": "客里春风酒亦多，梦中相看雨初长。\n欲来更上闲时得，不见梅花落却看。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 19,
+      "form": "五言律诗",
+      "start": "松",
+      "seed": 20260631,
+      "compact": "松杉人意气，皎皎不相侵。\n静听琴调鹤，风声鸡犬声。\n人间无月永，草木自缤纷。\n默坐书无愧，能留见落余。",
+      "large_7_66m": "松迳乱云低，山深不见林。\n落花惊鸟语，乱鸟过山林。\n人事无人见，村心不自闲。\n相从知有意，愁枕看回翁。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.825,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 20,
+      "form": "七言律诗",
+      "start": "柳",
+      "seed": 20260632,
+      "compact": "柳昂高韵旧春辉，一炷清香照夜飞。\n客里客人归醉舞，诗家诗句入天稀。\n相看月下春风暖，更听花光景色归。\n更合不知三百顷，几人应笑主人衣。",
+      "large_7_66m": "柳叶堆花初自开，月明天下日多迟。\n客怀未觉归来往，病眼休教醉莫愁。\n自见山根应不见，更宜春事欲知身。\n更看客去无人老，更有梅花到故枝。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.875,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.8928571428571429,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 21,
+      "form": "五言绝句",
+      "start": "烟",
+      "seed": 20260633,
+      "compact": "烟雾摇风动，溪山带月明。\n云中心易薄，月里独来吟。",
+      "large_7_66m": "烟云遥遥望，天下古东南。\n此地吾为我，长生独有程。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 22,
+      "form": "七言绝句",
+      "start": "酒",
+      "seed": 20260634,
+      "compact": "酒舍诗人不记年，山中多事亦相游。\n自怜万里春风月，只有江南十二州。",
+      "large_7_66m": "酒夫不到雨初微，人不飞衣起未飞。\n自合寒云归未得，可怜花鸟过南州。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.8928571428571429,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 23,
+      "form": "五言律诗",
+      "start": "诗",
+      "seed": 20260635,
+      "compact": "诗在东西去，相逢一别离。\n客行风月夜，酒力雁行留。\n我欲诗家语，君同柳树烟。\n南来无暮雨，一醉与人看。",
+      "large_7_66m": "诗句从公里，吟毫亦可攀。\n白云风雨里，春影露初留。\n鸟静诗书起，山中语自涯。\n南州无限意，何处是人悭。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.925,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 24,
+      "form": "七言律诗",
+      "start": "梦",
+      "seed": 20260636,
+      "compact": "梦寐思贤定莫论，一麾飞剑并三千。\n春风天下千金谷，秋月归来万里流。\n地阔故山应北梦，云横白鹤又西州。\n东篱已过东郊事，独有西湖望两京。",
+      "large_7_66m": "梦里诗中未得新，一缄不识意长安。\n道闲未得无他日，人在心情有旧身。\n但觉吟诗情不得，却从梦里又生知。\n明朝已过吾谁事，好似西风更自宜。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.8571428571428571,
+        "duplicate_bigram_ratio": 0.036363636363636376,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 25,
+      "form": "五言绝句",
+      "start": "春",
+      "seed": 20260637,
+      "compact": "春日催诗蝶，春风花欲归。\n君前花里去，不动月门寒。",
+      "large_7_66m": "春日出芳草，花间花上芽。\n无缘愁蝶尽，不动树前枝。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 26,
+      "form": "七言绝句",
+      "start": "夏",
+      "seed": 20260638,
+      "compact": "夏日暄风满碧天，一番晴浪上青冥。\n不知一笑无人意，莫怪山中一梦魂。",
+      "large_7_66m": "夏日不如春又尽，扁舟又向路中秋。\n老来一夜无人睡，肠断三千一百花。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 27,
+      "form": "五言律诗",
+      "start": "秋",
+      "seed": 20260639,
+      "compact": "秋色已无人，远心长有涯。\n风生不见叶，月落已相开。\n落尽孤寒竹，轻波照夜霞。\n山林无事去，行路几时回。",
+      "large_7_66m": "秋色清初晚，凄深过水宽。\n风生无定物，秋鸟欲忘生。\n客去吟留少，诗人看后心。\n山中无事业，行李几乡情。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.925,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.925,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 28,
+      "form": "七言律诗",
+      "start": "冬",
+      "seed": 20260640,
+      "compact": "冬夜不须天际春，黄花细雨未曾新。\n谁知已老浑无事，今岁又同公事人。\n诗信明年千载酒，句成诗字一杯香。\n莫教我子今何处，未得梅枝几度梅。",
+      "large_7_66m": "冬天风雨乱云浮，万里清辉意自悲。\n谁见世中元未老，不须身世苦无诗。\n诗翁自笑吾庐影，句里何时物木香。\n莫与闲心今日月，未应应有老夫知。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9107142857142857,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.875,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 29,
+      "form": "五言绝句",
+      "start": "山",
+      "seed": 20260641,
+      "compact": "山中不自在，月落独何人。\n何处此生味，终身在一春。",
+      "large_7_66m": "山中不自见，不是与沙风。\n何用风光重，终身在一回。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 30,
+      "form": "七言绝句",
+      "start": "水",
+      "seed": 20260642,
+      "compact": "水面红纤碧玉盘，碧云不见玉烟斜。\n山中一夜千金曲，莫道幽人不语来。",
+      "large_7_66m": "水中烟雨满云空，千里林根一岸楼。\n留得故山能一曲，不知人事不成天。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.8928571428571429,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 31,
+      "form": "五言律诗",
+      "start": "月",
+      "seed": 20260643,
+      "compact": "月气如秋后，江湖不见之。\n窗前云外树，风雨雪中溪。\n鸟去春无晚，蝉鸣野老来。\n人家一杯酒，独喜向人知。",
+      "large_7_66m": "月上花开日，风流满翠微。\n幽心思不见，风雨欲归归。\n地极春无乐，天端暗自稀。\n人间一杯里，独对白云干。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.975,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 32,
+      "form": "七言律诗",
+      "start": "风",
+      "seed": 20260644,
+      "compact": "风雨萧摇野水中，一条微翠入清风。\n青江夜月人相语，白发红花不可无。\n短棹有情怀似梦，归心无事觉浮生。\n好诗不见君应去，何处何妨醉未明。",
+      "large_7_66m": "风雨萧霏夜照中，一云初出雨清风。\n高吟未觉人相语，梦里先生意未忙。\n诗里闲情思不问，句中心事莫为知。\n何由此去身犹少，早岁何妨坐不留。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.875,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 33,
+      "form": "五言绝句",
+      "start": "花",
+      "seed": 20260645,
+      "compact": "花谢春无事，风烟夜不消。\n不知天外好，还作酒中诗。",
+      "large_7_66m": "花间不早隔，犹是无穷情。\n风景如何处，流莺欲出舟。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 34,
+      "form": "七言绝句",
+      "start": "雪",
+      "seed": 20260646,
+      "compact": "雪未红妆入玉宾，银河谁复笑相推。\n便言不用君王事，莫问东阳十五年。",
+      "large_7_66m": "雪里天边万里宽，风流深处未应安。\n今朝不见君归意，水下何妨雨满中。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 35,
+      "form": "五言律诗",
+      "start": "江",
+      "seed": 20260647,
+      "compact": "江南风雨尽，独步路无明。\n窗户一炉火，窗明不易消。\n黄昏疑有梦，白发满林生。\n自被山庭枕，何知是故城。",
+      "large_7_66m": "江南风雨尽，山色乱初开。\n深处行人宿，山桥到客回。\n落年闲未事，归路不须来。\n欲得无穷别，还知与子杯。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.975,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 36,
+      "form": "七言律诗",
+      "start": "云",
+      "seed": 20260648,
+      "compact": "云堂一别三千里，老子相期不复还。\n世事相逢尘寂寞，世人风月夜无山。\n黄金草木非吾念，白鹤青山是我闲。\n寂寞苍襟分此意，几时多少醉吟诗。",
+      "large_7_66m": "云山水脚千山久，风雨相留更苦难。\n自有诗人出清坐，不妨风景对流尘。\n我间酒熟无心少，君共诗成岂不醒。\n寂寞未来思眼界，从于何处似君知。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9107142857142857,
+        "duplicate_bigram_ratio": 0.018181818181818188,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9107142857142857,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 37,
+      "form": "五言绝句",
+      "start": "夜",
+      "seed": 20260649,
+      "compact": "夜听清宵雨，清明万籁行。\n寒灯鸣远响，夜梦入山阳。",
+      "large_7_66m": "夜听不穿篱，清明亦有行。\n清风吹白尽，秋露满山明。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 38,
+      "form": "七言绝句",
+      "start": "雨",
+      "seed": 20260650,
+      "compact": "雨余风雪夜如梅，天下幽香欲上来。\n莫折春来花不尽，一年老子作诗知。",
+      "large_7_66m": "雨中日里雪如丝，清火花昏欲自迟。\n若有春风吹不得，不知老去作诗人。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 39,
+      "form": "五言律诗",
+      "start": "天",
+      "seed": 20260651,
+      "compact": "天上文章事，人心即物华。\n今年不肯说，异日又何须。\n辛苦三年岁，化为百岁时。\n西来一庵路，一笑楚江湖。",
+      "large_7_66m": "天地文章德，官堂圣物长。\n今何身在道，异日一何须。\n天外尘埃石，云边水绕山。\n如何身自好，谁复见君闲。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.925,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.02564102564102566,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 40,
+      "form": "七言律诗",
+      "start": "日",
+      "seed": 20260652,
+      "compact": "日落春风不到门，西山无尽野花荒。\n月明时见青灯影，白玉寒灯照水泉。\n诗思远应添晚景，酒酣新酌话平平。\n不须长被愁何事，莫为高人约一声。",
+      "large_7_66m": "日月风光自昼长，梦中无数不如何。\n山林自见梅花影，石有新灯李四州。\n客思诗人留白发，世人吹面似青泥。\n月明独听真无事，为问君知梦里眠。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9464285714285714,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9107142857142857,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 41,
+      "form": "五言绝句",
+      "start": "人",
+      "seed": 20260653,
+      "compact": "人生不同色，我亦不堪笑。\n只有一般人，莫厌圆如梦。",
+      "large_7_66m": "人生不见花，我亦又无事。\n死有尘情情，生心不见笑。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.8,
+        "duplicate_bigram_ratio": 0.052631578947368474,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 42,
+      "form": "七言绝句",
+      "start": "客",
+      "seed": 20260654,
+      "compact": "客舍山林尽日边，春云秋色亦悠哉。\n新篁万里无人意，今日看花一片流。",
+      "large_7_66m": "客舍山前三十年，醉中留得旧来程。\n风流万里无心事，不见春期却自明。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 43,
+      "form": "五言律诗",
+      "start": "松",
+      "seed": 20260655,
+      "compact": "松竹萦纡侣，幽深宿独疏。\n一轩临水远，幽径见僧房。\n日月惊僧屋，风沙响树荒。\n秋声何处处，天际月中庭。",
+      "large_7_66m": "松竹出林樾，深深客独吟。\n一声生草屋，千里不关心。\n日月秋风雨，山林鸟发吟。\n秋风吹蝶晚，犹自梦中情。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.875,
+        "duplicate_bigram_ratio": 0.02564102564102566,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 44,
+      "form": "七言律诗",
+      "start": "柳",
+      "seed": 20260656,
+      "compact": "柳漾清霜碧玉堆，人家犹在碧桃花。\n不缘不可随飞去，岂是东园有晚晴。\n梅子未来皆笑语，柳梢空复更无家。\n一篇诗句非吾事，莫作江湖看雪中。",
+      "large_7_66m": "柳树疏花一样飞，岸边云外日晴归。\n鸟声不到无人事，草落云间有意还。\n我亦诗成山下目，君来懒听月争香。\n酒篇未见江湖远，更作清风又自肥。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9821428571428571,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 45,
+      "form": "五言绝句",
+      "start": "烟",
+      "seed": 20260657,
+      "compact": "烟霞碧树树，幽径照深楼。\n欲断人间地，时来我亦闲。",
+      "large_7_66m": "烟霞千里外，一树一帆遥。\n欲见金山地，从来水绕天。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 46,
+      "form": "七言绝句",
+      "start": "酒",
+      "seed": 20260658,
+      "compact": "酒杯不到梅花发，春后花枝酒一枝。\n何处醉时相觅梦，一年无路便宜催。",
+      "large_7_66m": "酒里长沙一倍寒，晚风吹雨细残枝。\n不知莫作清风梦，犹觉君来见雪时。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.8571428571428571,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 47,
+      "form": "五言律诗",
+      "start": "诗",
+      "seed": 20260659,
+      "compact": "诗礼分当在，元宵不复开。\n春风催夜月，晓露入船来。\n落叶惊荒草，春光照晚阳。\n此心犹带酒，应有满江城。",
+      "large_7_66m": "诗里诗书句，吟吟病未留。\n老心无路出，身露似秋秋。\n落叶如何日，春天有别迟。\n此情知不在，何处到来还。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.975,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 2
+      }
+    },
+    {
+      "id": 48,
+      "form": "七言律诗",
+      "start": "梦",
+      "seed": 20260660,
+      "compact": "梦里江山万象雄，一身何处是春风。\n三闾无厌归云见，二月秋声照水中。\n老矣自怜都不减，贫园应有客难穷。\n西州且把诗情去，尽日江湖话旧游。",
+      "large_7_66m": "梦里江山昼雨清，醉回吟落一帆飞。\n雨声无处归云见，月上秋光照日闲。\n白发烟流愁不觉，青鞋春水看金鸥。\n欲须莫把诗书里，尽日归来更有眠。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9821428571428571,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 49,
+      "form": "五言绝句",
+      "start": "春",
+      "seed": 20260661,
+      "compact": "春风一番雪，日月初思晓。\n今宵四十年，犹在三百度。",
+      "large_7_66m": "春风吹蝶动，燕子到渔矶。\n今夜有长日，东窗不尽山。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    },
+    {
+      "id": 50,
+      "form": "七言绝句",
+      "start": "夏",
+      "seed": 20260662,
+      "compact": "夏日江南十里春，一花不语见清流。\n两人未得春前泪，只有桃榆几处愁。",
+      "large_7_66m": "夏日云光万里开，如龙不见玉金台。\n仙人自有春风少，只恐中来梦里来。",
+      "compact_format_ok": true,
+      "large_format_ok": true,
+      "compact_metrics": {
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      },
+      "large_metrics": {
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0,
+        "max_char_run": 1
+      }
+    }
+  ]
+}

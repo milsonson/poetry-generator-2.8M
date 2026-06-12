@@ -1,0 +1,9 @@
+torch
+numpy
+matplotlib
+tqdm
+datasets
+huggingface_hub
+pytest
+opencc-python-reimplemented
+pypinyin

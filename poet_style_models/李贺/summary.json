@@ -1,0 +1,86 @@
+{
+  "config": {
+    "vocab_size": 5642,
+    "block_size": 128,
+    "n_layer": 4,
+    "n_head": 4,
+    "d_model": 128,
+    "d_ff": 512,
+    "dropout": 0.1
+  },
+  "vocab_size": 5642,
+  "loss_history": [
+    {
+      "iter": 0,
+      "train": 6.0895161628723145,
+      "val": 6.007702827453613
+    },
+    {
+      "iter": 40,
+      "train": 4.878968715667725,
+      "val": 5.309152126312256
+    },
+    {
+      "iter": 80,
+      "train": 4.18181848526001,
+      "val": 5.270665645599365
+    },
+    {
+      "iter": 120,
+      "train": 3.5897769927978516,
+      "val": 5.189766883850098
+    },
+    {
+      "iter": 160,
+      "train": 3.0735697746276855,
+      "val": 5.320337295532227
+    },
+    {
+      "iter": 200,
+      "train": 2.5643794536590576,
+      "val": 5.211221694946289
+    },
+    {
+      "iter": 240,
+      "train": 2.148641586303711,
+      "val": 5.134006500244141
+    },
+    {
+      "iter": 280,
+      "train": 1.7622894048690796,
+      "val": 5.264937877655029
+    },
+    {
+      "iter": 320,
+      "train": 1.4729182720184326,
+      "val": 5.354787826538086
+    },
+    {
+      "iter": 240,
+      "selected": "best",
+      "train": 2.124262809753418,
+      "val": 5.280003547668457
+    }
+  ],
+  "best_iter": 240,
+  "best_val_loss": 5.134006500244141,
+  "selected_checkpoint": "best_val",
+  "base_checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/transformer_poetry.pth",
+  "poet": "李贺",
+  "form_counts": {
+    "五言绝句": 20,
+    "五言律诗": 33,
+    "七言绝句": 19,
+    "七言律诗": 20
+  },
+  "train_sequences": 81,
+  "val_sequences": 11,
+  "fine_tune_args": {
+    "max_iters": 320,
+    "batch_size": 16,
+    "eval_interval": 40,
+    "eval_iters": 20,
+    "learning_rate": 8e-05,
+    "patience": 4
+  }
+}

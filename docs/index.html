@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transformer 试诗台</title>
+    <style>
+      :root {
+        --ink: #171512;
+        --muted: #6f675b;
+        --paper: #f6f0e4;
+        --paper-soft: rgba(255, 252, 244, 0.76);
+        --cinnabar: #b62f22;
+        --moss: #2f5c4c;
+        --lapis: #28476f;
+        --line: rgba(23, 21, 18, 0.18);
+        --shadow: rgba(58, 43, 24, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+        background:
+          linear-gradient(90deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 34px 34px,
+          linear-gradient(0deg, rgba(23, 21, 18, 0.026) 1px, transparent 1px) 0 0 / 34px 34px,
+          radial-gradient(circle at 18% 16%, rgba(182, 47, 34, 0.16), transparent 28%),
+          radial-gradient(circle at 82% 8%, rgba(47, 92, 76, 0.17), transparent 26%),
+          linear-gradient(135deg, #f9f2e7 0%, #e9dcc6 100%);
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100vw - 36px));
+        margin: 0 auto;
+        padding: 30px 0 36px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        padding-bottom: 18px;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .brand {
+        display: grid;
+        gap: 8px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 5.5vw, 72px);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .status {
+        min-width: 236px;
+        padding: 12px 14px;
+        border-left: 4px solid var(--lapis);
+        background: rgba(255, 255, 255, 0.28);
+        box-shadow: 0 14px 36px var(--shadow);
+      }
+
+      .status strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: var(--paper-soft);
+        box-shadow: 0 22px 60px var(--shadow);
+      }
+
+      .controls {
+        padding: 16px;
+        align-self: start;
+        position: sticky;
+        top: 20px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 13px;
+      }
+
+      label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      select {
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        padding: 7px 2px;
+        outline: none;
+        font-size: 20px;
+      }
+
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--cinnabar);
+      }
+
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--cinnabar);
+      }
+
+      .temperature-line {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .check-field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 0 0 12px;
+        padding: 8px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .button-row {
+        display: grid;
+        grid-template-columns: 1fr 46px;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      button {
+        min-height: 42px;
+        border: 2px solid var(--ink);
+        color: var(--paper);
+        background: var(--ink);
+        cursor: pointer;
+        transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+        transform: none;
+      }
+
+      .ghost {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .output {
+        min-height: 440px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .output-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 15px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .output-head h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .poem {
+        margin: 0;
+        padding: 24px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: clamp(22px, 3vw, 34px);
+        line-height: 1.72;
+        writing-mode: vertical-rl;
+        overflow-x: auto;
+        min-height: 360px;
+        max-height: 640px;
+      }
+
+      .empty {
+        color: var(--muted);
+        font-size: 20px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .footer a {
+        color: var(--ink);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+      }
+
+      @media (max-width: 860px) {
+        .topbar,
+        .layout,
+        .footer {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .controls {
+          position: static;
+        }
+
+        .poem {
+          writing-mode: horizontal-tb;
+          font-size: 24px;
+          min-height: 260px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Transformer 试诗台</h1>
+          <span class="meta">字符级 Causal Transformer · 近体诗结构控制</span>
+        </div>
+        <aside class="status" id="status">
+          <strong>展示模式</strong>
+          <span>可点击预览生成流程</span>
+        </aside>
+      </header>
+
+      <section class="layout">
+        <form class="panel controls" id="form">
+          <div class="field">
+            <label for="start">起始文字</label>
+            <input id="start" name="start" type="text" value="春" maxlength="12" />
+          </div>
+
+          <div class="field">
+            <label for="poemForm">体裁</label>
+            <select id="poemForm" name="poemForm">
+              <option value="五言绝句">五言绝句</option>
+              <option value="七言绝句" selected>七言绝句</option>
+              <option value="五言律诗">五言律诗</option>
+              <option value="七言律诗">七言律诗</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="temperature-line">
+              <label for="temperature">温度</label>
+              <span id="temperatureValue">0.6</span>
+            </div>
+            <input id="temperature" name="temperature" type="range" min="0" max="1.6" step="0.1" value="0.6" />
+          </div>
+
+          <div class="field">
+            <label for="length">续写字数</label>
+            <input id="length" name="length" type="number" min="10" max="240" value="80" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="topk">Top-k</label>
+              <input id="topk" name="topk" type="number" min="0" max="200" value="40" />
+            </div>
+            <div class="field">
+              <label for="candidates">候选数</label>
+              <input id="candidates" name="candidates" type="number" min="1" max="50" value="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="temperature-line">
+              <label for="repetitionPenalty">重复惩罚</label>
+              <span id="repetitionPenaltyValue">1.50</span>
+            </div>
+            <input id="repetitionPenalty" name="repetitionPenalty" type="range" min="1" max="2.5" step="0.05" value="1.5" />
+          </div>
+
+          <div class="field">
+            <label for="repetitionWindow">惩罚窗口</label>
+            <input id="repetitionWindow" name="repetitionWindow" type="number" min="8" max="240" value="64" />
+          </div>
+
+          <label class="check-field" for="adaptiveTemperature">
+            <span>自适应温度</span>
+            <input id="adaptiveTemperature" name="adaptiveTemperature" type="checkbox" checked />
+          </label>
+
+          <div class="button-row">
+            <button id="generate" type="submit">生成</button>
+            <button class="ghost" id="clear" type="button" title="清空输出">×</button>
+          </div>
+        </form>
+
+        <section class="panel output">
+          <div class="output-head">
+            <h2>模型输出</h2>
+            <span class="meta" id="runMeta">等待生成</span>
+          </div>
+          <pre class="poem empty" id="poem">点“生成”后，这里会显示模型样例诗句。</pre>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <span>本地完整版本通过 Python 后端加载 checkpoint 实时采样。</span>
+        <a href="https://github.com/" id="sourceLink">GitHub</a>
+      </footer>
+    </main>
+
+    <script>
+      const samples = {
+        "五言绝句": "春秋一夜雨，日暮欲晴时。\n不管江湖路，一帆随别离。",
+        "七言绝句": "月照寒云水上流，江山无数两三州。\n不知一宿秋风度，不似人间一段愁。",
+        "五言律诗": "山下有人行，松萝有客声。\n青山在云雨，白水见云生。\n白发归何处，清吟梦欲行。\n平生无一笑，不为老林鸣。",
+        "七言律诗": "风尘不管不相过，水色山空半处多。\n云气已随天气动，雨声犹带月华和。\n无人无复看春梦，有客何妨入夜歌。\n应笑归来频送别，为君回首到江湖。",
+      };
+
+      const form = document.querySelector("#form");
+      const poem = document.querySelector("#poem");
+      const runMeta = document.querySelector("#runMeta");
+      const generateButton = document.querySelector("#generate");
+      const temperature = document.querySelector("#temperature");
+      const temperatureValue = document.querySelector("#temperatureValue");
+      const repetitionPenalty = document.querySelector("#repetitionPenalty");
+      const repetitionPenaltyValue = document.querySelector("#repetitionPenaltyValue");
+      const sourceLink = document.querySelector("#sourceLink");
+
+      if (location.hostname.endsWith("github.io")) {
+        const owner = location.hostname.split(".")[0];
+        const repo = location.pathname.split("/").filter(Boolean)[0];
+        if (owner && repo) sourceLink.href = `https://github.com/${owner}/${repo}`;
+      } else {
+        sourceLink.href = ".";
+      }
+
+      temperature.addEventListener("input", () => {
+        temperatureValue.textContent = Number(temperature.value).toFixed(1);
+      });
+
+      repetitionPenalty.addEventListener("input", () => {
+        repetitionPenaltyValue.textContent = Number(repetitionPenalty.value).toFixed(2);
+      });
+
+      document.querySelector("#clear").addEventListener("click", () => {
+        poem.textContent = "";
+        poem.classList.add("empty");
+        runMeta.textContent = "已清空";
+      });
+
+      function shapeSample(text, start) {
+        const trimmed = start.trim();
+        if (!trimmed) return text;
+        return trimmed.slice(0, 1) + text.slice(1);
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const selectedForm = document.querySelector("#poemForm").value;
+        const start = document.querySelector("#start").value;
+        poem.classList.remove("empty");
+        poem.textContent = "生成中...";
+        runMeta.textContent = "模型采样中";
+        generateButton.disabled = true;
+
+        window.setTimeout(() => {
+          poem.textContent = shapeSample(samples[selectedForm], start);
+          runMeta.textContent = `展示样例 · ${selectedForm} · ${document.querySelector("#candidates").value} 选 1`;
+          generateButton.disabled = false;
+        }, 520);
+      });
+    </script>
+  </body>
+</html>

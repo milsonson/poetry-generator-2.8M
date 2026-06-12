@@ -1,0 +1,77 @@
+[
+  {
+    "poet": "李白",
+    "supported_sequences": 372,
+    "train_sequences": 327,
+    "val_sequences": 45,
+    "form_counts": {
+      "七言绝句": 88,
+      "五言律诗": 183,
+      "五言绝句": 84,
+      "七言律诗": 17
+    },
+    "best_iter": 300,
+    "best_val_loss": 4.741923809051514,
+    "final_train_loss": 3.2954323291778564,
+    "final_val_loss_resampled": 4.793896675109863,
+    "checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/poet_style_models/李白/transformer_poetry.pth",
+    "fine_tune_args": {
+      "max_iters": 500,
+      "batch_size": 16,
+      "eval_interval": 50,
+      "eval_iters": 20,
+      "learning_rate": 0.0001,
+      "patience": 4
+    }
+  },
+  {
+    "poet": "杜甫",
+    "supported_sequences": 709,
+    "train_sequences": 624,
+    "val_sequences": 85,
+    "form_counts": {
+      "五言律诗": 472,
+      "七言绝句": 91,
+      "七言律诗": 120,
+      "五言绝句": 26
+    },
+    "best_iter": 630,
+    "best_val_loss": 4.803673267364502,
+    "final_train_loss": 3.499385356903076,
+    "final_val_loss_resampled": 4.799169063568115,
+    "checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/poet_style_models/杜甫/transformer_poetry.pth",
+    "fine_tune_args": {
+      "max_iters": 700,
+      "batch_size": 16,
+      "eval_interval": 70,
+      "eval_iters": 20,
+      "learning_rate": 0.0001,
+      "patience": 4
+    }
+  },
+  {
+    "poet": "李贺",
+    "supported_sequences": 92,
+    "train_sequences": 81,
+    "val_sequences": 11,
+    "form_counts": {
+      "五言绝句": 20,
+      "五言律诗": 33,
+      "七言绝句": 19,
+      "七言律诗": 20
+    },
+    "best_iter": 240,
+    "best_val_loss": 5.134006500244141,
+    "final_train_loss": 2.124262809753418,
+    "final_val_loss_resampled": 5.280003547668457,
+    "checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/poet_style_models/李贺/transformer_poetry.pth",
+    "fine_tune_args": {
+      "max_iters": 320,
+      "batch_size": 16,
+      "eval_interval": 40,
+      "eval_iters": 20,
+      "learning_rate": 8e-05,
+      "patience": 4
+    }
+  }
+]

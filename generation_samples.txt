@@ -1,0 +1,19 @@
+=== 100k form-conditioned, 五言绝句, start 春, temperature 0.6 ===
+春秋一夜雨，日暮欲晴时。
+不管江湖路，一帆随别离。
+
+=== 100k form-conditioned, 七言绝句, start 月, temperature 0.6 ===
+月照寒云水上流，江山无数两三州。
+不知一宿秋风度，不似人间一段愁。
+
+=== 100k form-conditioned, 五言律诗, start 山, temperature 0.6 ===
+山下有人行，松萝有客声。
+青山在云雨，白水见云生。
+白发归何处，清吟梦欲行。
+平生无一笑，不为老林鸣。
+
+=== 100k form-conditioned, 七言律诗, start 风, temperature 0.6 ===
+风尘不管不相过，水色山空半处多。
+云气已随天气动，雨声犹带月华和。
+无人无复看春梦，有客何妨入夜歌。
+应笑归来频送别，为君回首到江湖。

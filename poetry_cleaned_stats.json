@@ -1,0 +1,8 @@
+{
+  "original_count": 100000,
+  "cleaned_count": 97559,
+  "removed_count": 2441,
+  "min_chars": 10,
+  "max_chars": 56,
+  "avg_chars": 37.96
+}

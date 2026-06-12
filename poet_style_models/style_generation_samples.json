@@ -1,0 +1,226 @@
+{
+  "settings": {
+    "max_new_tokens": 80,
+    "temperature": 0.6,
+    "top_k": 40,
+    "repetition_penalty": 1.1,
+    "repetition_window": 64,
+    "adaptive_temperature": true
+  },
+  "summary": {
+    "base": {
+      "format_ok": 4,
+      "avg_distinct_char_ratio": 0.91875,
+      "avg_duplicate_bigram_ratio": 0.0
+    },
+    "李白": {
+      "format_ok": 4,
+      "avg_distinct_char_ratio": 0.9285714285714286,
+      "avg_duplicate_bigram_ratio": 0.006410256410256415
+    },
+    "杜甫": {
+      "format_ok": 4,
+      "avg_distinct_char_ratio": 0.91875,
+      "avg_duplicate_bigram_ratio": 0.0
+    },
+    "李贺": {
+      "format_ok": 4,
+      "avg_distinct_char_ratio": 0.9482142857142857,
+      "avg_duplicate_bigram_ratio": 0.004545454545454547
+    }
+  },
+  "rows": [
+    {
+      "poet": "base",
+      "form": "五言绝句",
+      "start": "月",
+      "seed": 2026061200,
+      "text": "月射晓如雪，春风月渐华。\n天涯一乘酒，犹自下东西。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "base",
+      "form": "七言绝句",
+      "start": "春",
+      "seed": 2026061201,
+      "text": "春日重阳万里晴，人间天意在林间。\n青山月里游人去，不许孤云不似山。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.8214285714285714,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "base",
+      "form": "五言律诗",
+      "start": "山",
+      "seed": 2026061202,
+      "text": "山拥江东望，行舟路尽边。\n一身知几日，千古又明年。\n去国聊临景，今朝已别时。\n何当春色里，不觉在川时。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.975,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "base",
+      "form": "七言律诗",
+      "start": "风",
+      "seed": 2026061203,
+      "text": "风来南畔两桥归，一笑东轩送酒稀。\n千里夜船吹白发，万篇诗句对黄飞。\n醉乡正好三年事，梦寐堪嗟十里归。\n却忆山林旧诗语，不同此去一跫然。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李白",
+      "form": "五言绝句",
+      "start": "月",
+      "seed": 2026061200,
+      "text": "月色不可闻，天明月下看。\n天地一片云，却是天间起。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.85,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李白",
+      "form": "七言绝句",
+      "start": "春",
+      "seed": 2026061201,
+      "text": "春日长江不足迟，玉皇山下夜阑干。\n青天月里连宵去，为报新妆到此时。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李白",
+      "form": "五言律诗",
+      "start": "山",
+      "seed": 2026061202,
+      "text": "山阴如宋玉，天下为君游。\n天子弄清水，为君入明云。\n飞鸿如此去，白月空能倾。\n何处寻古锦，兹行在我师。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.02564102564102566
+      }
+    },
+    {
+      "poet": "李白",
+      "form": "七言律诗",
+      "start": "风",
+      "seed": 2026061203,
+      "text": "风飘零落两潺湲，水动寒沙秋浦流。\n天地夜行愁不尽，溪头还复暮天空。\n西来未作三年别，上客何时一片云。\n却忆长安不可惜，为君且向海南州。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "杜甫",
+      "form": "五言绝句",
+      "start": "月",
+      "seed": 2026061200,
+      "text": "月射南宫客，春风一树幽。\n东风吹白酒，他日下青城。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.95,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "杜甫",
+      "form": "七言绝句",
+      "start": "春",
+      "seed": 2026061201,
+      "text": "春日重阳翠气黄，江头一片白云红。\n青山鼓角连天地，不见新年与二人。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "杜甫",
+      "form": "五言律诗",
+      "start": "山",
+      "seed": 2026061202,
+      "text": "山远江东近，江流路不开。\n翠微风物色，青径月心回。\n翠盖凌云合，青枫散日来。\n故园春色合，犹觉在川开。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.85,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "杜甫",
+      "form": "七言律诗",
+      "start": "风",
+      "seed": 2026061203,
+      "text": "风尘雨歇不相催，每日春秋来尚回。\n江草客船吹急岸，岸头还对乱离家。\n江村船出黄鹂在，野口鱼跳白露痕。\n却忆山高风一曲，此时还近一家开。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.875,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李贺",
+      "form": "五言绝句",
+      "start": "月",
+      "seed": 2026061200,
+      "text": "月高晓宫响，露咽阑寒气。\n君闻金鳞井，谁见光淡灭。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 1.0,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李贺",
+      "form": "七言绝句",
+      "start": "春",
+      "seed": 2026061201,
+      "text": "春水长千里雪花，玉皇楼阁夜敲空。\n青灯一夜金鳞晓，白马新秋不见香。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.9642857142857143,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李贺",
+      "form": "五言律诗",
+      "start": "山",
+      "seed": 2026061202,
+      "text": "山上迎光薄，秋容出翠微。\n井香弄帐影，草色迎风飞。\n石井开芳草，霜摇落日迟。\n春风吹不死，泪眼看花机。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.9,
+        "duplicate_bigram_ratio": 0.0
+      }
+    },
+    {
+      "poet": "李贺",
+      "form": "七言律诗",
+      "start": "风",
+      "seed": 2026061203,
+      "text": "风吹南山老仙归，满天寒云间玉机。\n千里新篁不开卷，三年四时乘马嘶。\n蜀娥未笑花不断，上白还家长看影。\n绿草烟姿石公子，春风吹折吴家语。",
+      "metrics": {
+        "format_ok": true,
+        "distinct_char_ratio": 0.9285714285714286,
+        "duplicate_bigram_ratio": 0.018181818181818188
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "config": {
+    "vocab_size": 5642,
+    "block_size": 128,
+    "n_layer": 4,
+    "n_head": 4,
+    "d_model": 128,
+    "d_ff": 512,
+    "dropout": 0.1
+  },
+  "vocab_size": 5642,
+  "loss_history": [
+    {
+      "iter": 0,
+      "train": 5.453489780426025,
+      "val": 5.359155178070068
+    },
+    {
+      "iter": 70,
+      "train": 4.714986801147461,
+      "val": 4.900840759277344
+    },
+    {
+      "iter": 140,
+      "train": 4.550361633300781,
+      "val": 4.869665622711182
+    },
+    {
+      "iter": 210,
+      "train": 4.353996276855469,
+      "val": 4.835590362548828
+    },
+    {
+      "iter": 280,
+      "train": 4.212546348571777,
+      "val": 4.829461097717285
+    },
+    {
+      "iter": 350,
+      "train": 4.031771659851074,
+      "val": 4.81049108505249
+    },
+    {
+      "iter": 420,
+      "train": 3.9034359455108643,
+      "val": 4.855189800262451
+    },
+    {
+      "iter": 490,
+      "train": 3.7439827919006348,
+      "val": 4.808112144470215
+    },
+    {
+      "iter": 560,
+      "train": 3.6973648071289062,
+      "val": 4.812760829925537
+    },
+    {
+      "iter": 630,
+      "train": 3.5550448894500732,
+      "val": 4.803673267364502
+    },
+    {
+      "iter": 700,
+      "train": 3.409809112548828,
+      "val": 4.869370937347412
+    },
+    {
+      "iter": 630,
+      "selected": "best",
+      "train": 3.499385356903076,
+      "val": 4.799169063568115
+    }
+  ],
+  "best_iter": 630,
+  "best_val_loss": 4.803673267364502,
+  "selected_checkpoint": "best_val",
+  "base_checkpoint": "/home/milsonson/文档/xwechat_files/wxid_9p1wc9ggm85a22_fc94/msg/file/2026-06/pj9_transformer_poetry_D_ready/pj9_transformer_poetry/transformer_poetry.pth",
+  "poet": "杜甫",
+  "form_counts": {
+    "五言律诗": 472,
+    "七言绝句": 91,
+    "七言律诗": 120,
+    "五言绝句": 26
+  },
+  "train_sequences": 624,
+  "val_sequences": 85,
+  "fine_tune_args": {
+    "max_iters": 700,
+    "batch_size": 16,
+    "eval_interval": 70,
+    "eval_iters": 20,
+    "learning_rate": 0.0001,
+    "patience": 4
+  }
+}
