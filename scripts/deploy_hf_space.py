@@ -36,7 +36,7 @@ DEFAULT_IGNORE = [
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create/update the Hugging Face Docker Space.")
-    parser.add_argument("--repo-id", default="milsonson/poetry-generator-2.8M")
+    parser.add_argument("--repo-id", default="milsonson/poetry-generator-2-8m")
     parser.add_argument("--private", action="store_true")
     return parser.parse_args()
 

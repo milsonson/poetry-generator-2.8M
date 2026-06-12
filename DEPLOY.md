@@ -27,7 +27,7 @@ python web_app.py
 然后创建或更新 Space：
 
 ```bash
-.venv/bin/python scripts/deploy_hf_space.py --repo-id milsonson/poetry-generator-2.8M
+.venv/bin/python scripts/deploy_hf_space.py --repo-id milsonson/poetry-generator-2-8m
 ```
 
 方式二：网页部署。
