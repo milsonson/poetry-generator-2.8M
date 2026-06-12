@@ -1,3 +1,10 @@
+---
+title: Poetry Generator 2.8M
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # PJ9 中文诗歌生成项目
 
 本项目实现了一个面向中文古诗生成的字符级 GPT 风格 Causal Transformer。它不是 BERT，也不是 encoder-decoder 翻译模型，而是一个自回归语言模型：给定前面的字符，预测下一个字符，并在生成阶段按诗体、重复惩罚、温度、自适应采样和候选重排来控制输出。
