@@ -16,6 +16,22 @@ python web_app.py
 
 ## Hugging Face Spaces
 
+方式一：命令行部署。
+
+先在本机登录 Hugging Face：
+
+```bash
+.venv/bin/hf auth login
+```
+
+然后创建或更新 Space：
+
+```bash
+.venv/bin/python scripts/deploy_hf_space.py --repo-id milsonson/poetry-generator-2.8M
+```
+
+方式二：网页部署。
+
 1. 打开 Hugging Face，创建一个新的 Space。
 2. SDK 选择 `Docker`。
 3. 把这个 GitHub 仓库导入或把仓库内容推到 Space。
@@ -35,4 +51,3 @@ docker run --rm -p 7860:7860 poetry-generator-2-8m
 ```text
 http://127.0.0.1:7860
 ```
-
