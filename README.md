@@ -7,6 +7,14 @@ pinned: false
 
 # PJ9 中文诗歌生成项目
 
+## 在线体验
+
+- 真实生成器：https://milsonson-poetry-generator-2-8m.hf.space
+- Hugging Face Space：https://huggingface.co/spaces/milsonson/poetry-generator-2-8m
+- GitHub 仓库：https://github.com/milsonson/poetry-generator-2.8M
+
+线上版本运行的是 `web_app.py`，会加载仓库中的 `transformer_poetry.pth` 和 `vocab.json` 实时生成诗句；不是 GitHub Pages 静态样例页。
+
 本项目实现了一个面向中文古诗生成的字符级 GPT 风格 Causal Transformer。它不是 BERT，也不是 encoder-decoder 翻译模型，而是一个自回归语言模型：给定前面的字符，预测下一个字符，并在生成阶段按诗体、重复惩罚、温度、自适应采样和候选重排来控制输出。
 
 当前项目重点不是追求大模型规模，而是在一个较小模型上把训练流程、数据清洗、体裁控制、生成策略和弱排序评估做完整，方便课程展示、实验报告和本地交互。
@@ -69,7 +77,13 @@ pinned: false
 - `static/index.html`：本地完整 GUI，配合 `web_app.py` 调用 PyTorch checkpoint 实时生成。
 - `docs/index.html`：GitHub Pages 静态展示页，只能展示界面和样例，不能运行 PyTorch 模型。
 
-如果要公网访问后和本地完全一样实时生成，必须部署 Python 后端。仓库已经包含 Docker 入口，适合部署到 Hugging Face Spaces、Render、Railway、Fly.io 或自己的服务器。详见 `DEPLOY.md`。
+公网真实生成版本已部署到 Hugging Face Spaces：
+
+```text
+https://milsonson-poetry-generator-2-8m.hf.space
+```
+
+如果要重新部署或迁移到其他平台，仓库已经包含 Docker 入口，适合部署到 Hugging Face Spaces、Render、Railway、Fly.io 或自己的服务器。详见 `DEPLOY.md`。
 
 本地运行完整生成器：
 
