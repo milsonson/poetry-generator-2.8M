@@ -3,18 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>诗歌生成台</title>
+    <title>Transformer 试诗台</title>
     <style>
       :root {
-        --ink: #171512;
-        --muted: #6f675b;
-        --paper: #f6f0e4;
-        --paper-deep: #e5d6bd;
-        --cinnabar: #b62f22;
-        --moss: #2f5c4c;
-        --lapis: #28476f;
-        --line: rgba(23, 21, 18, 0.18);
-        --shadow: rgba(58, 43, 24, 0.18);
+        --ink: #191713;
+        --ink-soft: #3e392f;
+        --paper: #f7f3ea;
+        --panel: rgba(255, 253, 247, 0.88);
+        --wash: #ebe3d6;
+        --line: rgba(25, 23, 19, 0.16);
+        --cinnabar: #b73428;
+        --jade: #236857;
+        --blue: #27516e;
+        --gold: #a8782c;
+        --muted: #71695d;
+        --faint: rgba(25, 23, 19, 0.06);
+        --shadow: rgba(47, 36, 24, 0.16);
       }
 
       * {
@@ -27,10 +31,22 @@
         color: var(--ink);
         font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
         background:
-          linear-gradient(90deg, rgba(23, 21, 18, 0.035) 1px, transparent 1px) 0 0 / 34px 34px,
-          radial-gradient(circle at 18% 16%, rgba(182, 47, 34, 0.16), transparent 28%),
-          radial-gradient(circle at 82% 8%, rgba(47, 92, 76, 0.17), transparent 26%),
-          linear-gradient(135deg, #f9f2e7 0%, #e9dcc6 100%);
+          linear-gradient(90deg, rgba(25, 23, 19, 0.04) 1px, transparent 1px) 0 0 / 36px 36px,
+          linear-gradient(0deg, rgba(25, 23, 19, 0.028) 1px, transparent 1px) 0 0 / 36px 36px,
+          linear-gradient(135deg, rgba(183, 52, 40, 0.12), transparent 34%),
+          linear-gradient(315deg, rgba(35, 104, 87, 0.14), transparent 30%),
+          var(--paper);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0)),
+          repeating-linear-gradient(90deg, rgba(25, 23, 19, 0.018) 0 1px, transparent 1px 5px);
+        mix-blend-mode: multiply;
       }
 
       button,
@@ -40,78 +56,111 @@
       }
 
       .shell {
-        width: min(1180px, calc(100vw - 36px));
+        width: min(1280px, calc(100vw - 32px));
         margin: 0 auto;
-        padding: 30px 0 36px;
+        padding: 22px 0 30px;
       }
 
-      .topbar {
-        display: flex;
+      .masthead {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 280px;
         align-items: end;
-        justify-content: space-between;
-        gap: 18px;
-        padding-bottom: 18px;
+        gap: 24px;
+        padding-bottom: 14px;
         border-bottom: 2px solid var(--ink);
       }
 
-      .brand {
-        display: grid;
-        gap: 4px;
+      .eyebrow {
+        color: var(--jade);
+        font-size: 13px;
+        letter-spacing: 0.16em;
+      }
+
+      .lede {
+        width: min(680px, 100%);
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
       }
 
       h1 {
-        margin: 0;
-        font-size: clamp(34px, 5.5vw, 72px);
-        line-height: 0.95;
+        margin: 4px 0 0;
+        font-size: clamp(38px, 6vw, 84px);
+        line-height: 0.9;
         letter-spacing: 0;
       }
 
-      .meta {
-        color: var(--muted);
-        font-size: 14px;
-      }
-
       .status {
-        min-width: 236px;
-        padding: 12px 14px;
-        border-left: 4px solid var(--lapis);
-        background: rgba(255, 255, 255, 0.28);
-        box-shadow: 0 14px 36px var(--shadow);
+        min-height: 82px;
+        padding: 12px 16px;
+        border-left: 5px solid var(--blue);
+        background: rgba(255, 255, 255, 0.44);
+        box-shadow: 0 18px 48px var(--shadow);
       }
 
       .status strong {
         display: block;
-        margin-bottom: 3px;
+        margin-bottom: 5px;
+        font-size: 18px;
       }
 
-      .layout {
+      .status span,
+      .meta,
+      label {
+        color: var(--muted);
+      }
+
+      .workspace {
         display: grid;
-        grid-template-columns: 300px minmax(0, 1fr);
-        gap: 18px;
-        margin-top: 24px;
+        grid-template-columns: 344px minmax(0, 1fr);
+        gap: 22px;
+        margin-top: 18px;
       }
 
       .panel {
         border: 1px solid var(--line);
-        background: rgba(255, 252, 244, 0.72);
-        box-shadow: 0 22px 60px var(--shadow);
+        background: var(--panel);
+        box-shadow: 0 24px 70px var(--shadow);
+        backdrop-filter: blur(10px);
       }
 
       .controls {
-        padding: 18px;
         align-self: start;
         position: sticky;
-        top: 20px;
+        top: 18px;
+        padding: 17px 20px;
+      }
+
+      .control-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 13px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .control-title strong {
+        font-size: 18px;
+      }
+
+      .pill {
+        border: 1px solid var(--line);
+        background: rgba(39, 81, 110, 0.07);
+        padding: 5px 9px;
+        color: var(--blue);
+        font-size: 12px;
       }
 
       .field {
         display: grid;
-        gap: 8px;
-        margin-bottom: 17px;
+        gap: 7px;
+        margin-bottom: 12px;
       }
 
       label {
-        color: var(--muted);
         font-size: 13px;
       }
 
@@ -123,9 +172,22 @@
         border-bottom: 2px solid var(--ink);
         background: transparent;
         color: var(--ink);
-        padding: 9px 2px;
         outline: none;
-        font-size: 22px;
+        padding: 6px 2px;
+        font-size: 20px;
+        transition: border-color 160ms ease, background 160ms ease;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      select:focus {
+        border-color: var(--cinnabar);
+        background: rgba(183, 52, 40, 0.035);
+      }
+
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--cinnabar);
       }
 
       input[type="checkbox"] {
@@ -134,22 +196,17 @@
         accent-color: var(--cinnabar);
       }
 
-      input[type="range"] {
-        width: 100%;
-        accent-color: var(--cinnabar);
-      }
-
-      .temperature-line {
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
-        font-variant-numeric: tabular-nums;
-      }
-
       .row {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 14px;
+      }
+
+      .value-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-variant-numeric: tabular-nums;
       }
 
       .check-field {
@@ -157,8 +214,8 @@
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        margin: 2px 0 18px;
-        padding: 11px 0;
+        margin: 0 0 12px;
+        padding: 8px 0;
         border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
       }
@@ -167,37 +224,39 @@
         display: grid;
         grid-template-columns: 1fr 46px;
         gap: 10px;
-        margin-top: 22px;
       }
 
       button {
-        min-height: 46px;
+        min-height: 44px;
         border: 2px solid var(--ink);
         color: var(--paper);
         background: var(--ink);
         cursor: pointer;
-        transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+        box-shadow: 0 12px 30px rgba(25, 23, 19, 0.14);
+        transition: transform 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
       }
 
       button:hover {
         transform: translateY(-1px);
+        box-shadow: 0 16px 36px rgba(25, 23, 19, 0.18);
       }
 
       button:disabled {
         cursor: wait;
-        opacity: 0.65;
+        opacity: 0.62;
         transform: none;
       }
 
       .ghost {
-        background: transparent;
         color: var(--ink);
+        background: transparent;
+        box-shadow: none;
       }
 
       .output {
-        min-height: 440px;
+        min-height: 620px;
         display: grid;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: auto auto minmax(0, 1fr);
       }
 
       .output-head {
@@ -205,26 +264,65 @@
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        padding: 15px 18px;
+        padding: 16px 18px;
         border-bottom: 1px solid var(--line);
       }
 
       .output-head h2 {
         margin: 0;
-        font-size: 18px;
+        font-size: 19px;
+      }
+
+      .progress-zone {
+        display: grid;
+        gap: 10px;
+        padding: 13px 18px;
+        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(90deg, rgba(183, 52, 40, 0.05), rgba(35, 104, 87, 0.05)),
+          rgba(235, 227, 214, 0.36);
+      }
+
+      .progress-copy {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .progress-track {
+        height: 8px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--faint);
+      }
+
+      .progress-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--cinnabar), var(--gold), var(--jade));
+        transition: width 180ms ease;
+      }
+
+      .result-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 326px;
+        min-height: 0;
       }
 
       .poem {
         margin: 0;
-        padding: 24px;
+        min-height: 470px;
+        max-height: 720px;
+        padding: 34px;
+        overflow-x: auto;
         white-space: pre-wrap;
         word-break: break-word;
-        font-size: clamp(22px, 3vw, 34px);
-        line-height: 1.72;
         writing-mode: vertical-rl;
-        overflow-x: auto;
-        min-height: 360px;
-        max-height: 640px;
+        font-size: clamp(24px, 3.2vw, 38px);
+        line-height: 1.74;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
       }
 
       .empty {
@@ -232,34 +330,117 @@
         font-size: 20px;
       }
 
+      .ranked {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        padding: 18px;
+        border-left: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.16)),
+          rgba(255, 255, 255, 0.3);
+      }
+
+      .ranked-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .candidate {
+        border: 1px solid var(--line);
+        background: rgba(255, 253, 247, 0.9);
+        padding: 13px;
+        box-shadow: 0 10px 28px rgba(47, 36, 24, 0.08);
+      }
+
+      .candidate-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 8px;
+        color: var(--blue);
+        font-size: 13px;
+      }
+
+      .candidate:first-child {
+        border-color: rgba(183, 52, 40, 0.36);
+      }
+
+      .candidate:first-child .candidate-head strong {
+        color: var(--cinnabar);
+      }
+
+      .candidate pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: var(--ink-soft);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .empty-state {
+        border: 1px dashed var(--line);
+        padding: 14px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
       .error {
         color: var(--cinnabar);
       }
 
-      @media (max-width: 860px) {
-        .topbar,
-        .layout {
+      @media (max-width: 980px) {
+        .masthead,
+        .workspace,
+        .result-grid {
           grid-template-columns: 1fr;
-          display: grid;
         }
 
         .controls {
           position: static;
         }
 
+        .ranked {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
         .poem {
           writing-mode: horizontal-tb;
-          font-size: 24px;
-          min-height: 260px;
+          min-height: 300px;
+          font-size: 25px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100vw - 22px, 1280px);
+          padding-top: 18px;
+        }
+
+        .row {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 42px;
         }
       }
     </style>
   </head>
   <body>
     <main class="shell">
-      <header class="topbar">
-        <div class="brand">
+      <header class="masthead">
+        <div>
+          <div class="eyebrow">CAUSAL TRANSFORMER · 2.8M</div>
           <h1>Transformer 试诗台</h1>
+          <p class="lede">结构约束、重复惩罚、自适应温度和候选重排同时工作；默认保持 50 个候选采样，并把排序靠前的结果展示出来。</p>
         </div>
         <aside class="status" id="status">
           <strong>检查模型中</strong>
@@ -267,8 +448,13 @@
         </aside>
       </header>
 
-      <section class="layout">
+      <section class="workspace">
         <form class="panel controls" id="form">
+          <div class="control-title">
+            <strong>生成参数</strong>
+            <span class="pill">近体诗</span>
+          </div>
+
           <div class="field">
             <label for="start">起始文字</label>
             <input id="start" name="start" type="text" value="春" maxlength="12" />
@@ -285,31 +471,37 @@
           </div>
 
           <div class="field">
-            <div class="temperature-line">
+            <div class="value-line">
               <label for="temperature">温度</label>
-              <span id="temperatureValue">0.6</span>
+              <span id="temperatureValue">0.60</span>
             </div>
-            <input id="temperature" name="temperature" type="range" min="0" max="1.6" step="0.1" value="0.6" />
-          </div>
-
-          <div class="field">
-            <label for="length">续写字数</label>
-            <input id="length" name="length" type="number" min="10" max="240" value="80" />
+            <input id="temperature" name="temperature" type="range" min="0" max="1.6" step="0.05" value="0.6" />
           </div>
 
           <div class="row">
             <div class="field">
+              <label for="length">续写字数</label>
+              <input id="length" name="length" type="number" min="10" max="240" value="80" />
+            </div>
+            <div class="field">
               <label for="topk">Top-k</label>
               <input id="topk" name="topk" type="number" min="0" max="200" value="40" />
             </div>
+          </div>
+
+          <div class="row">
             <div class="field">
-              <label for="candidates">候选数</label>
+              <label for="candidates">候选采样</label>
               <input id="candidates" name="candidates" type="number" min="1" max="50" value="50" />
+            </div>
+            <div class="field">
+              <label for="topN">展示 Top N</label>
+              <input id="topN" name="topN" type="number" min="1" max="10" value="3" />
             </div>
           </div>
 
           <div class="field">
-            <div class="temperature-line">
+            <div class="value-line">
               <label for="repetitionPenalty">重复惩罚</label>
               <span id="repetitionPenaltyValue">1.50</span>
             </div>
@@ -337,7 +529,27 @@
             <h2>模型输出</h2>
             <span class="meta" id="runMeta">等待生成</span>
           </div>
-          <pre class="poem empty" id="poem">点“生成”后，这里会显示训练模型续写的诗句。</pre>
+          <div class="progress-zone">
+            <div class="progress-copy">
+              <span id="progressText">采样器待命</span>
+              <span id="progressCount">0 / 0</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+          <div class="result-grid">
+            <pre class="poem empty" id="poem">点“生成”后，这里会显示训练模型续写的诗句。</pre>
+            <aside class="ranked">
+              <div class="ranked-title">
+                <span>Top-N 候选</span>
+                <span id="scoreMeta">scorer 待命</span>
+              </div>
+              <div id="rankedList">
+                <div class="empty-state">生成完成后，这里会列出分数靠前的候选，方便比较模型的不同采样结果。</div>
+              </div>
+            </aside>
+          </div>
         </section>
       </section>
     </main>
@@ -347,6 +559,11 @@
       const statusBox = document.querySelector("#status");
       const poem = document.querySelector("#poem");
       const runMeta = document.querySelector("#runMeta");
+      const progressText = document.querySelector("#progressText");
+      const progressCount = document.querySelector("#progressCount");
+      const progressFill = document.querySelector("#progressFill");
+      const rankedList = document.querySelector("#rankedList");
+      const scoreMeta = document.querySelector("#scoreMeta");
       const generateButton = document.querySelector("#generate");
       const temperature = document.querySelector("#temperature");
       const temperatureValue = document.querySelector("#temperatureValue");
@@ -354,7 +571,7 @@
       const repetitionPenaltyValue = document.querySelector("#repetitionPenaltyValue");
 
       temperature.addEventListener("input", () => {
-        temperatureValue.textContent = Number(temperature.value).toFixed(1);
+        temperatureValue.textContent = Number(temperature.value).toFixed(2);
       });
 
       repetitionPenalty.addEventListener("input", () => {
@@ -365,11 +582,16 @@
         poem.textContent = "";
         poem.classList.add("empty");
         runMeta.textContent = "已清空";
+        progressText.textContent = "采样器待命";
+        progressCount.textContent = "0 / 0";
+        progressFill.style.width = "0%";
+        rankedList.innerHTML = `<div class="empty-state">生成完成后，这里会列出分数靠前的候选，方便比较模型的不同采样结果。</div>`;
+        scoreMeta.textContent = "scorer 待命";
       });
 
       function setStatus(payload) {
         if (payload.ready) {
-          statusBox.innerHTML = `<strong>模型已加载</strong><span>可以生成</span>`;
+          statusBox.innerHTML = `<strong>模型已加载</strong><span>${payload.device} · vocab ${payload.vocab_size}</span>`;
           statusBox.classList.remove("error");
         } else {
           statusBox.innerHTML = `<strong>模型暂不能加载</strong><span>${payload.error || "缺少依赖"}</span>`;
@@ -383,39 +605,111 @@
         setStatus(payload);
       }
 
+      function generationPayload() {
+        const candidates = Number(document.querySelector("#candidates").value);
+        const topN = Math.min(Number(document.querySelector("#topN").value), candidates);
+        return {
+          start: document.querySelector("#start").value,
+          form: document.querySelector("#poemForm").value,
+          temperature: Number(document.querySelector("#temperature").value),
+          max_new_tokens: Number(document.querySelector("#length").value),
+          top_k: document.querySelector("#topk").value || null,
+          candidates,
+          top_n: topN,
+          repetition_penalty: Number(document.querySelector("#repetitionPenalty").value),
+          repetition_window: Number(document.querySelector("#repetitionWindow").value),
+          adaptive_temperature: document.querySelector("#adaptiveTemperature").checked,
+        };
+      }
+
+      function updateProgress(current, total) {
+        progressText.textContent = `正在生成第 ${current} 首`;
+        progressCount.textContent = `${current} / ${total}`;
+        progressFill.style.width = `${Math.round((current / total) * 100)}%`;
+      }
+
+      function renderRanked(candidates) {
+        rankedList.innerHTML = candidates.map((item) => `
+          <article class="candidate">
+            <div class="candidate-head">
+              <strong>#${item.rank}</strong>
+              <span>score ${item.rank_score}</span>
+            </div>
+            <pre>${item.text}</pre>
+          </article>
+        `).join("");
+      }
+
+      function handleStreamEvent(data) {
+        if (data.event === "start") {
+          progressText.textContent = "准备采样";
+          progressCount.textContent = `0 / ${data.total}`;
+          progressFill.style.width = "0%";
+        }
+        if (data.event === "progress") {
+          updateProgress(data.current, data.total);
+        }
+        if (data.event === "final") {
+          poem.textContent = data.text;
+          poem.classList.remove("empty");
+          renderRanked(data.candidates || []);
+          const parts = data.score && data.score.parts ? data.score.parts : {};
+          scoreMeta.textContent = `score ${data.score.rank_score}`;
+          progressText.textContent = "生成完成";
+          progressCount.textContent = `${data.settings.candidates} / ${data.settings.candidates}`;
+          progressFill.style.width = "100%";
+          runMeta.textContent = `${data.elapsed_ms} ms · ${data.device} · ${data.settings.candidates} 选 ${data.settings.top_n}`;
+          if (parts.rhyme !== undefined) {
+            scoreMeta.textContent = `score ${data.score.rank_score} · rhyme ${parts.rhyme}`;
+          }
+        }
+        if (data.event === "error") {
+          throw new Error(data.error);
+        }
+      }
+
+      async function generateWithProgress(payload) {
+        const res = await fetch("/api/generate_stream", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok || !res.body) {
+          const fallback = await res.json().catch(() => ({}));
+          throw new Error(fallback.error || "生成失败");
+        }
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop();
+          for (const line of lines) {
+            if (line.trim()) handleStreamEvent(JSON.parse(line));
+          }
+        }
+        if (buffer.trim()) handleStreamEvent(JSON.parse(buffer));
+      }
+
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         poem.classList.remove("empty");
         poem.textContent = "生成中...";
         runMeta.textContent = "模型采样中";
+        scoreMeta.textContent = "scorer 排序中";
+        rankedList.innerHTML = "";
         generateButton.disabled = true;
         try {
-          const payload = {
-            start: document.querySelector("#start").value,
-            form: document.querySelector("#poemForm").value,
-            temperature: Number(document.querySelector("#temperature").value),
-            max_new_tokens: Number(document.querySelector("#length").value),
-            top_k: document.querySelector("#topk").value || null,
-            repetition_penalty: Number(document.querySelector("#repetitionPenalty").value),
-            repetition_window: Number(document.querySelector("#repetitionWindow").value),
-            candidates: Number(document.querySelector("#candidates").value),
-            adaptive_temperature: document.querySelector("#adaptiveTemperature").checked,
-          };
-          const res = await fetch("/api/generate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
-          const data = await res.json();
-          if (!res.ok || data.error) {
-            throw new Error(data.missing ? `${data.error}: ${data.missing}` : data.error);
-          }
-          poem.textContent = data.text;
-          runMeta.textContent = `${data.elapsed_ms} ms · ${data.device} · ${data.settings.candidates} 选 1`;
+          await generateWithProgress(generationPayload());
         } catch (error) {
           poem.textContent = error.message;
           poem.classList.add("empty");
           runMeta.textContent = "生成失败";
+          progressText.textContent = "采样中断";
+          scoreMeta.textContent = "scorer 未返回";
         } finally {
           generateButton.disabled = false;
         }

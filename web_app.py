@@ -60,6 +60,63 @@ def load_model_once(device_name: str = "auto") -> Tuple[Any, Dict[str, int], lis
         raise RuntimeError(_MODEL_ERROR) from exc
 
 
+def clamp_int(value: Any, default: int, low: int, high: int) -> int:
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        parsed = default
+    return max(low, min(parsed, high))
+
+
+def parse_generation_settings(payload: Dict[str, Any]) -> Dict[str, Any]:
+    start = str(payload.get("start", "春")).strip() or "春"
+    form = str(payload.get("form", "七言绝句"))
+    if form not in FORM_OPTIONS:
+        form = "七言绝句"
+    top_k_raw = payload.get("top_k")
+    top_k = int(top_k_raw) if top_k_raw not in (None, "", 0) else 40
+    candidate_count = clamp_int(payload.get("candidates", 50), 50, 1, 50)
+    top_n = clamp_int(payload.get("top_n", 3), 3, 1, candidate_count)
+    return {
+        "start": start,
+        "max_new_tokens": clamp_int(payload.get("max_new_tokens", 80), 80, 1, 240),
+        "temperature": float(payload.get("temperature", 0.6)),
+        "form": form,
+        "top_k": top_k,
+        "repetition_penalty": max(1.0, min(float(payload.get("repetition_penalty", 1.5)), 2.5)),
+        "repetition_window": clamp_int(payload.get("repetition_window", 64), 64, 1, 240),
+        "adaptive_temperature": bool(payload.get("adaptive_temperature", True)),
+        "candidates": candidate_count,
+        "top_n": top_n,
+        "theme": str(payload.get("theme") or start),
+        "poet": str(payload.get("poet") or ""),
+    }
+
+
+def score_payload(score: Any) -> Dict[str, Any]:
+    return {
+        "rank_score": score.rank_score,
+        "parts": score.parts,
+        "reasons": score.reasons,
+        "warnings": score.warnings,
+    }
+
+
+def ranked_candidate_payload(rank: int, item: Any) -> Dict[str, Any]:
+    return {
+        "rank": rank,
+        "text": item.text,
+        "rank_score": item.score.rank_score,
+        "parts": item.score.parts,
+        "reasons": item.score.reasons,
+        "warnings": item.score.warnings,
+    }
+
+
+def format_stream_event(payload: Dict[str, Any]) -> bytes:
+    return (json.dumps(payload, ensure_ascii=False) + "\n").encode("utf-8")
+
+
 def read_samples() -> list[Dict[str, str]]:
     path = ROOT / "generation_samples.txt"
     if not path.exists():
@@ -111,35 +168,28 @@ class PoetryHandler(SimpleHTTPRequestHandler):
         json_response(self, 404, {"error": "not found"})
 
     def do_POST(self) -> None:
-        if self.path != "/api/generate":
-            json_response(self, 404, {"error": "not found"})
+        if self.path == "/api/generate":
+            self.handle_generate(stream=False)
             return
+        if self.path == "/api/generate_stream":
+            self.handle_generate(stream=True)
+            return
+        json_response(self, 404, {"error": "not found"})
 
+    def handle_generate(self, stream: bool) -> None:
+        stream_started = False
         try:
             length = int(self.headers.get("Content-Length", "0"))
-            payload = json.loads(self.rfile.read(length).decode("utf-8") or "{}")
-            start = str(payload.get("start", "春")).strip() or "春"
-            max_new_tokens = max(1, min(int(payload.get("max_new_tokens", 80)), 240))
-            temperature = float(payload.get("temperature", 0.6))
-            form = str(payload.get("form", "七言绝句"))
-            if form not in FORM_OPTIONS:
-                form = "七言绝句"
-            top_k_raw = payload.get("top_k")
-            top_k = int(top_k_raw) if top_k_raw not in (None, "", 0) else 40
-            repetition_penalty = max(1.0, min(float(payload.get("repetition_penalty", 1.5)), 2.5))
-            repetition_window = max(1, min(int(payload.get("repetition_window", 64)), 240))
-            adaptive_temperature = bool(payload.get("adaptive_temperature", True))
-            candidate_count = max(1, min(int(payload.get("candidates", 50)), 50))
-            theme = str(payload.get("theme") or start)
-            poet = str(payload.get("poet") or "")
+            raw_payload = json.loads(self.rfile.read(length).decode("utf-8") or "{}")
+            settings = parse_generation_settings(raw_payload)
             started = time.perf_counter()
 
             model, stoi, itos, device = load_model_once()
 
             from generation_forms import get_form_spec
 
-            spec = get_form_spec(form)
-            prompt_chars = f"{spec.token}{start}"
+            spec = get_form_spec(settings["form"])
+            prompt_chars = f"{spec.token}{settings['start']}"
             missing = sorted({ch for ch in prompt_chars if ch not in stoi})
             if missing:
                 json_response(
@@ -149,65 +199,74 @@ class PoetryHandler(SimpleHTTPRequestHandler):
                 )
                 return
 
-            candidates = [
-                generate_text(
-                    model,
-                    stoi,
-                    itos,
-                    device,
-                    start=start,
-                    max_new_tokens=max_new_tokens,
-                    temperature=temperature,
-                    top_k=top_k,
-                    form=form,
-                    repetition_penalty=repetition_penalty,
-                    repetition_window=repetition_window,
-                    adaptive_temperature=adaptive_temperature,
-                )
-                for _ in range(candidate_count)
-            ]
-            selected = select_best_candidate(candidates, form=form, theme=theme, poet=poet)
-            json_response(
-                self,
-                200,
-                {
-                    "text": selected.text,
-                    "score": {
-                        "rank_score": selected.score.rank_score,
-                        "parts": selected.score.parts,
-                        "reasons": selected.score.reasons,
-                        "warnings": selected.score.warnings,
-                    },
-                    "candidates": [
+            if stream:
+                self.send_response(200)
+                self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                stream_started = True
+                self.send_stream({"event": "start", "total": settings["candidates"]})
+
+            candidates: list[str] = []
+            for index in range(settings["candidates"]):
+                if stream:
+                    self.send_stream(
                         {
-                            "rank": rank,
-                            "text": item.text,
-                            "rank_score": item.score.rank_score,
-                            "parts": item.score.parts,
-                            "reasons": item.score.reasons,
-                            "warnings": item.score.warnings,
+                            "event": "progress",
+                            "current": index + 1,
+                            "total": settings["candidates"],
                         }
-                        for rank, item in enumerate(selected.ranked, start=1)
-                    ],
-                    "elapsed_ms": round((time.perf_counter() - started) * 1000),
-                    "device": str(device),
-                    "settings": {
-                        "start": start,
-                        "form": form,
-                        "theme": theme,
-                        "poet": poet,
-                        "candidates": candidate_count,
-                        "temperature": temperature,
-                        "max_new_tokens": max_new_tokens,
-                        "top_k": top_k,
-                        "repetition_penalty": repetition_penalty,
-                        "repetition_window": repetition_window,
-                        "adaptive_temperature": adaptive_temperature,
-                    },
-                },
+                    )
+                candidates.append(
+                    generate_text(
+                        model,
+                        stoi,
+                        itos,
+                        device,
+                        start=settings["start"],
+                        max_new_tokens=settings["max_new_tokens"],
+                        temperature=settings["temperature"],
+                        top_k=settings["top_k"],
+                        form=settings["form"],
+                        repetition_penalty=settings["repetition_penalty"],
+                        repetition_window=settings["repetition_window"],
+                        adaptive_temperature=settings["adaptive_temperature"],
+                    )
+                )
+
+            selected = select_best_candidate(
+                candidates,
+                form=settings["form"],
+                theme=settings["theme"],
+                poet=settings["poet"],
             )
+            ranked = [
+                ranked_candidate_payload(rank, item)
+                for rank, item in enumerate(selected.ranked, start=1)
+            ]
+            payload = {
+                "event": "final",
+                "text": selected.text,
+                "score": score_payload(selected.score),
+                "candidates": ranked[: settings["top_n"]],
+                "elapsed_ms": round((time.perf_counter() - started) * 1000),
+                "device": str(device),
+                "settings": settings,
+            }
+            if stream:
+                self.send_stream(payload)
+            else:
+                json_response(self, 200, payload)
         except Exception as exc:
-            json_response(self, 500, {"error": f"{type(exc).__name__}: {exc}"})
+            error_payload = {"event": "error", "error": f"{type(exc).__name__}: {exc}"}
+            if stream and stream_started:
+                self.send_stream(error_payload)
+            else:
+                json_response(self, 500, {"error": error_payload["error"]})
+
+    def send_stream(self, payload: Dict[str, Any]) -> None:
+        self.wfile.write(format_stream_event(payload))
+        self.wfile.flush()
 
     def handle_status(self) -> None:
         try:
