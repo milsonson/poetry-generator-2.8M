@@ -50,6 +50,13 @@ def test_gui_uses_visible_ink_landscape_background():
     assert "opacity: 0.68;" in html
 
 
+def test_gui_uses_poetic_intro_copy():
+    html = HTML.read_text(encoding="utf-8")
+
+    assert "或许你可以奉献一首诗" in html
+    assert "结构约束、重复惩罚" not in html
+
+
 def test_generation_settings_clamp_top_n_to_candidate_count():
     settings = parse_generation_settings(
         {
