@@ -38,6 +38,16 @@ def test_gui_is_poetry_only_and_exposes_progress_and_top_n():
     assert "正在生成第" in html
 
 
+def test_gui_uses_visible_ink_landscape_background():
+    html = HTML.read_text(encoding="utf-8")
+
+    assert "/static/assets/mountain-ink-bg.png" in html
+    assert "cover no-repeat" in html
+    assert ".output {" in html
+    assert "background: transparent;" in html
+    assert "filter: contrast(1.18)" in html
+
+
 def test_generation_settings_clamp_top_n_to_candidate_count():
     settings = parse_generation_settings(
         {
