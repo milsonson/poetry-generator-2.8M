@@ -30,6 +30,14 @@ python web_app.py
 .venv/bin/python scripts/deploy_hf_space.py --repo-id milsonson/poetry-generator-2-8m
 ```
 
+如果要切到 GPU，可以请求 Hugging Face 的 GPU 硬件，例如：
+
+```bash
+.venv/bin/python scripts/deploy_hf_space.py --repo-id milsonson/poetry-generator-2-8m --hardware t4-small
+```
+
+也可以在 Hugging Face Space 页面中打开 Settings -> Hardware，手动选择 `Nvidia T4 - small` 或更高配置。当前 Docker 镜像使用 CUDA 版 PyTorch，在 CPU Space 上会自动回退 CPU，在 GPU Space 上会优先使用 CUDA。
+
 方式二：网页部署。
 
 1. 打开 Hugging Face，创建一个新的 Space。

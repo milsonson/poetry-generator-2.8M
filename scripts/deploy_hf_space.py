@@ -37,6 +37,11 @@ DEFAULT_IGNORE = [
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create/update the Hugging Face Docker Space.")
     parser.add_argument("--repo-id", default="milsonson/poetry-generator-2-8m")
+    parser.add_argument(
+        "--hardware",
+        default="",
+        help="Optional Hugging Face Space hardware, for example t4-small, t4-medium, l4x1, or cpu-basic.",
+    )
     parser.add_argument("--private", action="store_true")
     return parser.parse_args()
 
@@ -51,6 +56,8 @@ def main() -> None:
         private=args.private,
         exist_ok=True,
     )
+    if args.hardware:
+        api.request_space_hardware(repo_id=args.repo_id, hardware=args.hardware)
     api.upload_folder(
         repo_id=args.repo_id,
         repo_type="space",

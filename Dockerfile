@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
 ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
@@ -17,4 +17,3 @@ COPY transformer_poetry.pth vocab.json generation_samples.txt ./
 EXPOSE 7860
 
 CMD ["python", "web_app.py"]
-
