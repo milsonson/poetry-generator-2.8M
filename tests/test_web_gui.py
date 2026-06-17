@@ -45,8 +45,9 @@ def test_gui_uses_visible_ink_landscape_background():
     assert "cover no-repeat" in html
     assert ".output {" in html
     assert "background: transparent;" in html
-    assert "--muted: #11100d;" in html
+    assert "--muted: #050505;" in html
     assert "filter: contrast(1.08)" in html
+    assert "opacity: 0.68;" in html
 
 
 def test_generation_settings_clamp_top_n_to_candidate_count():

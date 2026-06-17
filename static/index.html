@@ -6,8 +6,8 @@
     <title>Transformer 试诗台</title>
     <style>
       :root {
-        --ink: #11100d;
-        --ink-soft: #11100d;
+        --ink: #050505;
+        --ink-soft: #050505;
         --paper: #f7f3ea;
         --panel: rgba(255, 253, 247, 0.58);
         --wash: #ebe3d6;
@@ -16,7 +16,7 @@
         --jade: #236857;
         --blue: #27516e;
         --gold: #a8782c;
-        --muted: #11100d;
+        --muted: #050505;
         --faint: rgba(25, 23, 19, 0.06);
         --shadow: rgba(47, 36, 24, 0.16);
       }
@@ -34,6 +34,7 @@
         min-height: 100vh;
         color: var(--ink);
         font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+        font-weight: 560;
         background: transparent;
         position: relative;
         isolation: isolate;
@@ -47,6 +48,7 @@
         pointer-events: none;
         background: url("/static/assets/mountain-ink-bg.png") center center / cover no-repeat;
         filter: contrast(1.08) saturate(1.02) brightness(1.04);
+        opacity: 0.68;
       }
 
       body::after {
@@ -55,7 +57,7 @@
         inset: 0;
         z-index: -1;
         pointer-events: none;
-        background: linear-gradient(rgba(255, 255, 255, 0.055), rgba(247, 243, 234, 0.095));
+        background: linear-gradient(rgba(255, 255, 255, 0.14), rgba(247, 243, 234, 0.2));
       }
 
       button,
@@ -89,6 +91,7 @@
         width: min(680px, 100%);
         margin: 8px 0 0;
         color: var(--muted);
+        font-weight: 620;
         font-size: 15px;
         line-height: 1.55;
       }
@@ -119,6 +122,7 @@
       .meta,
       label {
         color: var(--muted);
+        font-weight: 620;
       }
 
       .workspace {
@@ -187,6 +191,7 @@
         outline: none;
         padding: 6px 2px;
         font-size: 20px;
+        font-weight: 620;
         transition: border-color 160ms ease, background 160ms ease;
       }
 
@@ -307,6 +312,7 @@
         justify-content: space-between;
         gap: 12px;
         color: var(--muted);
+        font-weight: 620;
         font-size: 14px;
       }
 
@@ -349,6 +355,7 @@
 
       .empty {
         color: var(--muted);
+        font-weight: 620;
         font-size: 20px;
       }
 
@@ -369,6 +376,7 @@
         align-items: center;
         justify-content: space-between;
         color: var(--muted);
+        font-weight: 620;
         font-size: 13px;
       }
 
@@ -414,6 +422,7 @@
         background: rgba(255, 253, 247, 0.003);
         padding: 14px;
         color: var(--muted);
+        font-weight: 620;
         font-size: 14px;
         line-height: 1.6;
       }
